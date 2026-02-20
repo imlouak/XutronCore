@@ -17,7 +17,7 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></a>
   <!-- License & Release Badges -->
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=for-the-badge" alt="License: CC BY-NC-SA 4.0"></a>
-  <a href="https://github.com/imlouak/xutroncore/releases"><img src="https://img.shields.io/github/v/release/imlouak/xutroncore?style=for-the-badge" alt="Latest Launcher Release"></a>
+  <a href="https://github.com/imlouak/xutroncore/releases/latest"><img src="https://img.shields.io/github/v/release/imlouak/xutroncore?style=for-the-badge" alt="Latest Launcher Release"></a>
 </p>
 
 > The central hub for the **XutronCore** application suite. This project provides the **XutronCore Launcher**, a unified tool for **Windows** designed to install, update, and manage all XutronCore applications seamlessly.
