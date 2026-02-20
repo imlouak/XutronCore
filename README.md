@@ -1,4 +1,3 @@
-<!-- <-- comment (.md file)(README.md) -->
 <div align="center">
 
 # XutronCore 🚀
@@ -7,7 +6,7 @@
 
 <p align="center">
   <!-- Website Badge -->
-  <a href="https://iamplayerexe.github.io/XutronCore/"><img src="https://img.shields.io/badge/Visit%20our%20Website-8A2BE2?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"></a>
+  <a href="https://imlouak.github.io/XutronCore/"><img src="https://img.shields.io/badge/Visit%20our%20Website-8A2BE2?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"></a>
   <br/>
   <!-- Tech Stack Badges -->
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="NodeJS"></a>
@@ -18,7 +17,7 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></a>
   <!-- License & Release Badges -->
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License: MIT"></a>
-  <a href="https://github.com/iamplayerexe/xutroncore/releases"><img src="https://img.shields.io/github/v/release/iamplayerexe/xutroncore?style=for-the-badge" alt="Latest Launcher Release"></a>
+  <a href="https://github.com/imlouak/xutroncore/releases"><img src="https://img.shields.io/github/v/release/imlouak/xutroncore?style=for-the-badge" alt="Latest Launcher Release"></a>
 </p>
 
 > The central hub for the **XutronCore** application suite. This project provides the **XutronCore Launcher**, a unified tool for **Windows** designed to install, update, and manage all XutronCore applications seamlessly.
@@ -71,8 +70,8 @@ The XutronCore project simplifies application management by providing a single, 
 
 ## 🚀 Getting Started
 
-1.  Visit our **[Official Website](https://iamplayerexe.github.io/xutroncore/)** for the easiest download experience.
-2.  Alternatively, go to the **[Latest Launcher Release Page](https://github.com/iamplayerexe/xutroncore/releases/latest)**.
+1.  Visit our **[Official Website](https://imlouak.github.io/xutroncore/)** for the easiest download experience.
+2.  Alternatively, go to the **[Latest Launcher Release Page](https://github.com/imlouak/xutroncore/releases/latest)**.
 3.  Download the installer from the **Assets** section.
 
 <details>
@@ -109,4 +108,3 @@ The XutronCore project simplifies application management by providing a single, 
 ## 📜 License
 
 This project is distributed under the **MIT License**.
-<!-- <-- end comment (.md file)(README.md) -->
