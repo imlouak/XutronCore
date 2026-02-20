@@ -1,3 +1,5 @@
+Absolument ! Voici le README pour "XutronCore" avec la section de licence simplifiée pour pointer directement vers le fichier `LICENSE` dans votre dépôt GitHub. Le badge de licence a également été mis à jour.
+
 <div align="center">
 
 # XutronCore 🚀
@@ -16,7 +18,7 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></a>
   <!-- License & Release Badges -->
-  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=for-the-badge" alt="License: CC BY-NC-SA 4.0"></a>
+  <a href="https://github.com/imlouak/xutroncore/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License: MIT"></a>
   <a href="https://github.com/imlouak/xutroncore/releases"><img src="https://img.shields.io/github/v/tag/imlouak/XutronCore?style=for-the-badge&label=Release" alt="Latest Launcher Release"></a>
 </p>
 
@@ -107,20 +109,4 @@ The XutronCore project simplifies application management by providing a single, 
 
 ## 📜 License
 
-Copyright (c) 2025 Xutron
-
-This software is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License**.
-
-You are free to:
-- **Share** — copy and redistribute the material in any medium or format
-- **Adapt** — remix, transform, and build upon the material
-
-Under the following terms:
-- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-- **NonCommercial** — You may not use the material for commercial purposes.
-- **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
-
-This is a human-readable summary of (and not a substitute for) the license.
-The full legal text of the license can be found at:
-
-https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+Ce projet est distribué sous la licence spécifiée dans le fichier [LICENSE](https://github.com/imlouak/xutroncore/blob/main/LICENSE).
