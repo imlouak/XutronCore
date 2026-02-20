@@ -1,5 +1,3 @@
-Absolument ! Voici le README pour "XutronCore" avec la section de licence simplifiée pour pointer directement vers le fichier `LICENSE` dans votre dépôt GitHub. Le badge de licence a également été mis à jour.
-
 <div align="center">
 
 # XutronCore 🚀
