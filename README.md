@@ -16,7 +16,7 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></a>
   <!-- License & Release Badges -->
-  <a href="https://github.com/imlouak/xutroncore/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://github.com/imlouak/xutroncore/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-gray.svg?style=for-the-badge" alt="License: by-nc-sa"></a>
   <a href="https://github.com/imlouak/xutroncore/releases"><img src="https://img.shields.io/github/v/tag/imlouak/XutronCore?style=for-the-badge&label=Release" alt="Latest Launcher Release"></a>
 </p>
 
