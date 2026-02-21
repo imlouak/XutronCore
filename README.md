@@ -32,13 +32,14 @@
   <summary><strong>✨ Launcher Interface & Features</strong></summary>
   <br/>
   <p align="center">
-    <em>The main launcher interface, showing available and installed applications.</em><br/>
-    <!-- TODO: Replace with a screenshot of your launcher's main screen -->
-    <img src="URL_TO_YOUR_LAUNCHER_SCREENSHOT_1.png" alt="Main Launcher Interface" width="750">
+    <em>Demonstration of the launcher installation process.</em><br/>
+    <img src="https://cdn.discordapp.com/attachments/1037490342062207046/1474839852578242782/ezgif.com-video-to-gif-converter.gif?ex=699b4f26&is=6999fda6&hm=0be5ccf59ef41f1aad263f6c7e9f478b354b6b82f90b288c8b60d15b49ffa392&" alt="Launcher Installation" width="750">
     <br/><br/>
-    <em>Demonstration of the installation process for an application.</em><br/>
-    <!-- TODO: Replace with a screenshot or GIF of the installation progress bar -->
-    <img src="URL_TO_YOUR_LAUNCHER_SCREENSHOT_2.png" alt="App Installation" width="750">
+    <em>The main launcher interface, showing available and installed applications.</em><br/>
+    <img src="https://cdn.discordapp.com/attachments/1037490342062207046/1474840242392662087/ezgif.com-video-to-gif-converter_1.gif?ex=699b4f82&is=6999fe02&hm=1bc546f7bbc23aab4143e5fd9f4e6933a39aef247419f848aa591f90db5b009f&" alt="Main Launcher Interface" width="750">
+    <br/><br/>
+    <em>Uninstallation and installation process of an application as well as running statuses.</em><br/>
+    <img src="https://cdn.discordapp.com/attachments/1037490342062207046/1474840275703828570/ezgif.com-video-to-gif-converter_2.gif?ex=699b4f8a&is=6999fe0a&hm=c415c96da6cab2ec02667ae1ddec77c8971736fc25acb250de89b1854bb83b88&" alt="App Installation" width="750">
   </p>
 </details>
 
