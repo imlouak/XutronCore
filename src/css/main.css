@@ -1,41 +1,44 @@
-/* <-- comment (.css file)(src/css/main.css) */
-/* src/css/main.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-    --bg-color: #f9fafb;
-    --text-color: #111827;
-    --card-bg-color: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.05);
-    --border-color: #e5e7eb;
-    --subtitle-color: #6b7280;
-    --accent-color: #4f46e5;
-    --accent-color-hover: #4338ca;
-    --success-color: #10b981; /* Added for progress bar */
-    
-    --sun-color: #f59e0b;
-    --moon-color: #818cf8;
-
-    --color-windows: #00a4ef;
-    --color-macos: #555555; /* Dark Grey */
-    --color-linux: #de9b1a;
-}
-
-html[data-theme="dark"] {
     --bg-color: #111827;
     --text-color: #f9fafb;
     --card-bg-color: #1f2937;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --border-color: #374151;
     --subtitle-color: #9ca3af;
+    --accent-color: #4f46e5;
+    --accent-color-hover: #4338ca;
+    --success-color: #10b981;
+    /* Added for progress bar */
+
+    --sun-color: #f59e0b;
+    --moon-color: #818cf8;
+
+    --color-windows: #00a4ef;
+    --color-macos: #555555;
+    /* Dark Grey */
+    --color-linux: #de9b1a;
 }
+
+
 
 /* --- Keyframe Animation for the new Shine Effect --- */
 @keyframes reflection-sweep {
-    from { background-position: 150% 0; }
-    to { background-position: -150% 0; }
+    from {
+        background-position: 150% 0;
+    }
+
+    to {
+        background-position: -150% 0;
+    }
 }
 
+
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 
 body {
     font-family: 'Inter', -apple-system, sans-serif;
@@ -45,6 +48,14 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease;
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 .page-container {
@@ -54,16 +65,45 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
 
-h1, h2, h3 { font-weight: 700; color: var(--text-color); transition: color 0.2s ease; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.25rem; }
-.section-title { text-align: center; }
-p { line-height: 1.7; color: var(--subtitle-color); }
-main > section { width: 100%; margin-bottom: 6rem; }
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
 
-.hero { text-align: center; padding: 4rem 0 0 0; width: 100%; }
+h2 {
+    font-size: 2.25rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+.section-title {
+    text-align: center;
+}
+
+p {
+    line-height: 1.7;
+    color: var(--subtitle-color);
+}
+
+main>section {
+    width: 100%;
+    margin-bottom: 6rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 0 0 0;
+    width: 100%;
+}
+
 .hero-title {
     font-size: 3.75rem;
     /* Updated background for sweeping animation */
@@ -75,7 +115,7 @@ main > section { width: 100%; margin-bottom: 6rem; }
     animation: reflection-sweep 4s linear infinite;
     /* Subtle base glow */
     text-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
-    
+
     margin: 0;
     transition: text-shadow 0.3s ease;
     cursor: pointer;
@@ -86,46 +126,38 @@ main > section { width: 100%; margin-bottom: 6rem; }
     /* Pause the animation on hover */
     animation-play-state: paused;
     /* Apply a stronger, multi-layered neon glow */
-    text-shadow: 
-        0 0 7px rgba(196, 181, 253, 0.9), 
-        0 0 20px rgba(79, 70, 229, 0.9), 
+    text-shadow:
+        0 0 7px rgba(196, 181, 253, 0.9),
+        0 0 20px rgba(79, 70, 229, 0.9),
         0 0 40px rgba(79, 70, 229, 0.7);
 }
 
 
-.subtitle { font-size: 1.25rem; max-width: 650px; margin: 1rem auto 0; }
-
-#theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px var(--shadow-color);
-    transition: all 0.2s ease;
-    z-index: 1000;
+.subtitle {
+    font-size: 1.25rem;
+    max-width: 100%;
+    width: 650px;
+    margin: 1rem auto 0;
 }
-#theme-toggle:hover { transform: scale(1.1); }
-#theme-toggle .sun-icon svg { stroke: var(--sun-color); }
-#theme-toggle .moon-icon svg { stroke: var(--moon-color); }
-#theme-toggle .moon-icon { display: none; }
-html[data-theme="dark"] #theme-toggle .sun-icon { display: none; }
-html[data-theme="dark"] #theme-toggle .moon-icon { display: block; }
 
-#download { text-align: center; padding: 3rem 0; width: 100%;}
-.version-info { margin-top: 1.5rem; font-size: 0.9rem; color: var(--subtitle-color); }
+#download {
+    text-align: center;
+    padding: 3rem 0;
+    width: 100%;
+}
+
+.version-info {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--subtitle-color);
+}
+
 .download-grid {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
 }
+
 .download-card {
     background: var(--bg-color);
     border-radius: 4px;
@@ -143,20 +175,32 @@ html[data-theme="dark"] #theme-toggle .moon-icon { display: block; }
     box-shadow: 0 4px 6px var(--shadow-color);
     min-width: 250px;
 }
+
 .download-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 15px var(--shadow-color);
 }
-.download-card .logo { width: 28px; height: 28px; }
-.windows { border-bottom-color: var(--color-windows); }
 
-.features { /* Padding removed as requested */ }
+.download-card .logo {
+    width: 28px;
+    height: 28px;
+}
+
+.windows {
+    border-bottom-color: var(--color-windows);
+}
+
+.features {
+    /* Padding removed as requested */
+}
+
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     text-align: left;
 }
+
 .info-card {
     background: var(--card-bg-color);
     padding: 2rem;
@@ -164,7 +208,13 @@ html[data-theme="dark"] #theme-toggle .moon-icon { display: block; }
     box-shadow: 0 4px 6px var(--shadow-color);
     border: 1px solid var(--border-color);
 }
-.info-card h3 { margin: 0 0 0.5rem 0; color: var(--text-color); border: none; padding: 0; }
+
+.info-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    border: none;
+    padding: 0;
+}
 
 .stats-grid {
     display: grid;
@@ -173,49 +223,74 @@ html[data-theme="dark"] #theme-toggle .moon-icon { display: block; }
     text-align: center;
     margin-top: 3rem;
 }
+
 .stat-card {
     background-color: var(--card-bg-color);
     padding: 2rem;
     border-radius: 4px;
     border: 1px solid var(--border-color);
 }
+
 .stat-number {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--accent-color);
 }
+
 .stat-label {
     display: block;
     margin-top: 0.5rem;
     color: var(--subtitle-color);
 }
+
 .table-container {
     background-color: var(--card-bg-color);
     border-radius: 4px;
     border: 1px solid var(--border-color);
     overflow: hidden;
     margin-top: 3rem;
+    max-width: 100%;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
 }
-th, td {
+
+th,
+td {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
 }
-th { font-weight: 600; }
-tbody tr:last-child td { border-bottom: none; }
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
 
 th:not(:first-child) {
     text-align: center;
 }
 
-td.check { color: #10b981; font-weight: bold; text-align: center; font-size: 1.25rem; }
-td.cross { color: #ef4444; font-weight: bold; text-align: center; font-size: 1.25rem; }
+td.check {
+    color: #10b981;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+td.cross {
+    color: #ef4444;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.25rem;
+}
 
 footer {
     width: 100%;
@@ -224,6 +299,7 @@ footer {
     margin-top: 4rem;
     border-top: 1px solid var(--border-color);
 }
+
 footer p {
     margin: 0;
     font-size: 0.9rem;
@@ -303,4 +379,114 @@ footer p {
     opacity: 1;
     transform: translateY(0);
 }
-/* <-- end comment (.css file)(src/css/main.css) */
+
+/* --- Mobile Responsive Styles --- */
+@media (max-width: 1000px) {
+
+    .page-container {
+        font-size: 80% !important;
+        width: 100% !important;
+        padding-block: 50px !important;
+        padding-inline: 0 !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        overflow-x: hidden !important;
+        padding-top: 0 !important;
+        box-sizing: border-box;
+    }
+
+    body {
+        box-sizing: border-box;
+        overflow-x: hidden !important;
+    }
+
+    /* Hero Fixes */
+    .hero {
+        /* padding: 1rem 0 0 0; */
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        width: 100%;
+        /* margin-top: 0.5rem; */
+    }
+
+    main>section {
+        margin-bottom: 2.5rem;
+        width: 100%;
+    }
+
+    /* Convert Grids to strict vertical Flex Columns */
+    .info-grid,
+    .stats-grid,
+    .download-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Remove explicit widths from Cards */
+    .info-card,
+    .stat-card,
+    .download-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .download-card {
+        justify-content: center;
+    }
+
+
+
+    /* Rigid Table Restraints */
+    .table-container {
+        width: 100%;
+        /* margin-top: 1rem; */
+        box-sizing: border-box;
+    }
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding-bottom: 0.5rem;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    th:first-child,
+    td:first-child {
+        text-align: left;
+        width: 45%;
+    }
+
+    td.check,
+    td.cross {
+        font-size: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    #progress-container {
+        width: 80%;
+        left: 10%;
+        bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        box-sizing: border-box;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+}

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XutronCore</title>
-    
+
     <!-- Favicon Links -->
     <link rel="icon" type="image/x-icon" href="src/assets/xutroncore-icon.ico">
     <link rel="icon" type="image/png" href="src/assets/xutroncore-icon.png">
@@ -14,18 +15,18 @@
     <!-- Canvas-Confetti Library for the celebration effect -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
 
-    <button id="theme-toggle" title="Toggle dark/light mode">
-        <span class="icon sun-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
-        <span class="icon moon-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
-    </button>
-    
+
     <div class="page-container">
         <header class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">XutronCore</h1>
-                <p class="subtitle">The central hub for all your applications. Seamlessly manage, update, and launch your software suite from one powerful, unified interface.</p>
+                <div class="title-wrapper">
+                    <h1 class="hero-title">XutronCore</h1>
+                </div>
+                <p class="subtitle">The central hub for all your applications. Seamlessly manage, update, and launch
+                    your software suite from one powerful, unified interface.</p>
             </div>
         </header>
 
@@ -40,23 +41,26 @@
                         <span>Install for Windows</span>
                     </a>
                 </div>
-                 <p class="version-info">Latest Launcher Version: <span id="latest-version">...</span></p>
+                <p class="version-info">Latest Launcher Version: <span id="latest-version">...</span></p>
             </section>
-            
+
             <section class="info-section features fade-in-section">
                 <h2 class="section-title">Why XutronCore?</h2>
                 <div class="info-grid">
                     <div class="info-card">
                         <h3>Always Up-to-Date</h3>
-                        <p>The launcher automatically checks for the latest versions of your applications, notifying you instantly so you never miss a critical update.</p>
+                        <p>The launcher automatically checks for the latest versions of your applications, notifying you
+                            instantly so you never miss a critical update.</p>
                     </div>
                     <div class="info-card">
                         <h3>Secure & Private</h3>
-                        <p>Powered by a secure API that interfaces with private repositories. Your launcher gets version data without ever exposing sensitive access tokens.</p>
+                        <p>Powered by a secure API that interfaces with private repositories. Your launcher gets version
+                            data without ever exposing sensitive access tokens.</p>
                     </div>
                     <div class="info-card">
                         <h3>Dynamic & Scalable</h3>
-                        <p>New applications can be added to the ecosystem instantly by updating a central configuration, with no need to redeploy the launcher itself.</p>
+                        <p>New applications can be added to the ecosystem instantly by updating a central configuration,
+                            with no need to redeploy the launcher itself.</p>
                     </div>
                 </div>
             </section>
@@ -78,7 +82,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="comparison" class="info-section fade-in-section">
                 <h2 class="section-title">Comparison</h2>
                 <div class="table-container">
@@ -111,7 +115,7 @@
                                 <td class="check">✓</td>
                                 <td class="cross">?</td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <td>Light & Dark Mode</td>
                                 <td class="check">✓</td>
                                 <td class="cross">?</td>
@@ -139,4 +143,5 @@
 
     <script src="./src/js/main.js"></script>
 </body>
+
 </html>

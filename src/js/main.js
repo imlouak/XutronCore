@@ -3,23 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- THEME TOGGLE LOGIC ---
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        const applyTheme = (theme) => {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-        };
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-    }
-
-    // --- DOM elements for progress and confetti ---
+    // Theme functionality removed    // --- DOM elements for progress and confetti ---
     const progressContainer = document.getElementById('progress-container');
     const progressLabel = document.getElementById('progress-label');
     const progressBarFill = document.getElementById('progress-bar-fill');
@@ -56,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(interval);
-                
+
                 progressLabel.textContent = 'Download Complete!';
                 progressBarFill.classList.add('complete');
-                
+
                 triggerConfetti();
 
                 setTimeout(() => {
@@ -90,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const release = await response.json();
             const latestVersion = release.tag_name.replace('v', '');
-            
+
             const assets = release.assets;
             const downloadUrls = {
                 windows: assets.find(asset => asset.name.endsWith('.exe'))?.browser_download_url
