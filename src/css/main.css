@@ -10,20 +10,20 @@
     --accent-color: #4f46e5;
     --accent-color-hover: #4338ca;
     --success-color: #10b981;
-    /* Added for progress bar */
+
 
     --sun-color: #f59e0b;
     --moon-color: #818cf8;
 
     --color-windows: #00a4ef;
     --color-macos: #555555;
-    /* Dark Grey */
+
     --color-linux: #de9b1a;
 }
 
 
 
-/* --- Keyframe Animation for the new Shine Effect --- */
+
 @keyframes reflection-sweep {
     from {
         background-position: 150% 0;
@@ -106,14 +106,14 @@ main>section {
 
 .hero-title {
     font-size: 3.75rem;
-    /* Updated background for sweeping animation */
+
     background: linear-gradient(100deg, var(--accent-color) 40%, #c4b5fd 50%, var(--accent-color) 60%);
     background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* Continuous animation */
+
     animation: reflection-sweep 4s linear infinite;
-    /* Subtle base glow */
+
     text-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
 
     margin: 0;
@@ -123,9 +123,9 @@ main>section {
 }
 
 .hero-title:hover {
-    /* Pause the animation on hover */
+
     animation-play-state: paused;
-    /* Apply a stronger, multi-layered neon glow */
+
     text-shadow:
         0 0 7px rgba(196, 181, 253, 0.9),
         0 0 20px rgba(79, 70, 229, 0.9),
@@ -190,9 +190,7 @@ main>section {
     border-bottom-color: var(--color-windows);
 }
 
-.features {
-    /* Padding removed as requested */
-}
+.features {}
 
 .info-grid {
     display: grid;
@@ -306,7 +304,7 @@ footer p {
     color: var(--subtitle-color);
 }
 
-/* --- Progress Bar Styles --- */
+
 #progress-container {
     position: fixed;
     bottom: 0;
@@ -352,7 +350,7 @@ footer p {
     background-color: var(--success-color, #10b981);
 }
 
-/* --- Confetti Canvas Styles --- */
+
 #confetti-canvas {
     position: fixed;
     top: 0;
@@ -363,12 +361,12 @@ footer p {
     z-index: 2000;
 }
 
-/* Helper class to hide elements */
+
 .hidden {
     display: none !important;
 }
 
-/* --- Scroll Animation Styles --- */
+
 .fade-in-section {
     opacity: 0;
     transform: translateY(30px);
@@ -380,7 +378,7 @@ footer p {
     transform: translateY(0);
 }
 
-/* --- Mobile Responsive Styles --- */
+
 @media (max-width: 1000px) {
 
     .page-container {
@@ -400,10 +398,8 @@ footer p {
         overflow-x: hidden !important;
     }
 
-    /* Hero Fixes */
-    .hero {
-        /* padding: 1rem 0 0 0; */
-    }
+
+    .hero {}
 
     .hero-title {
         font-size: 2.2rem;
@@ -412,7 +408,7 @@ footer p {
     .subtitle {
         font-size: 1rem;
         width: 100%;
-        /* margin-top: 0.5rem; */
+
     }
 
     main>section {
@@ -420,7 +416,7 @@ footer p {
         width: 100%;
     }
 
-    /* Convert Grids to strict vertical Flex Columns */
+
     .info-grid,
     .stats-grid,
     .download-grid {
@@ -430,7 +426,7 @@ footer p {
         width: 100%;
     }
 
-    /* Remove explicit widths from Cards */
+
     .info-card,
     .stat-card,
     .download-card {
@@ -446,10 +442,10 @@ footer p {
 
 
 
-    /* Rigid Table Restraints */
+
     .table-container {
         width: 100%;
-        /* margin-top: 1rem; */
+
         box-sizing: border-box;
     }
 

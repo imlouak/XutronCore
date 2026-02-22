@@ -5,17 +5,17 @@
 </div>
 
 <p align="center">
-  <!-- Website Badge -->
+
   <a href="https://imlouak.github.io/XutronCore/"><img src="https://img.shields.io/badge/Visit%20our%20Website-8A2BE2?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"></a>
   <br/>
-  <!-- Tech Stack Badges -->
+
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="NodeJS"></a>
   <a href="https://www.electronjs.org/"><img src="https://img.shields.io/badge/Electron-28.1.0-%2347848F.svg?style=for-the-badge&logo=electron&logoColor=white" alt="Electron"></a>
   <a href="https://www.electron.build/"><img src="https://img.shields.io/badge/Electron%20Builder-24.9.1-%239B59B6.svg?style=for-the-badge&logo=electron&logoColor=white" alt="Electron Builder"></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5"><img src="https://img.shields.io/badge/HTML5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></a>
-  <!-- License & Release Badges -->
+
   <a href="https://github.com/imlouak/xutroncore/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=for-the-badge" alt="License: CC BY-NC-SA 4.0"></a>
   <a href="https://github.com/imlouak/xutroncore/releases"><img src="https://img.shields.io/github/v/tag/imlouak/XutronCore?style=for-the-badge&label=Release" alt="Latest Launcher Release"></a>
 </p>

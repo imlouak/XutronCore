@@ -1,15 +1,15 @@
-// <-- comment (.js file)(src/js/main.js)
-// src/js/main.js
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Theme functionality removed    // --- DOM elements for progress and confetti ---
+
     const progressContainer = document.getElementById('progress-container');
     const progressLabel = document.getElementById('progress-label');
     const progressBarFill = document.getElementById('progress-bar-fill');
     const confettiCanvas = document.getElementById('confetti-canvas');
 
-    // --- Confetti Function ---
+
     const triggerConfetti = () => {
         if (!confettiCanvas || typeof confetti !== 'function') return;
         const myConfetti = confetti.create(confettiCanvas, {
@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Download Simulation Function ---
+
     const simulateDownload = (event) => {
         event.preventDefault();
         const downloadUrl = event.currentTarget.href;
-        if (!downloadUrl || downloadUrl === '#') return; // Do nothing if the link isn't ready
+        if (!downloadUrl || downloadUrl === '#') return;
         let progress = 0;
 
         progressContainer.classList.remove('hidden');
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     };
 
-    // --- Function to fetch release data from GitHub API ---
+
     const fetchLatestRelease = async () => {
         const owner = 'iamplayerexe';
         const repo = 'xutroncore';
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Function to update the DOM and attach event listeners ---
+
     const updateDownloadLinks = (version, urls) => {
         const latestVersionEl = document.getElementById('latest-version');
         const winLinkEl = document.getElementById('win-link');
@@ -124,25 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Copyright Year Logic ---
+
     const yearSpan = document.getElementById('copyright-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // --- SCROLL FADE-IN/OUT ANIMATION ---
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // If the element is intersecting (on-screen), add the 'visible' class
+
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             } else {
-                // Otherwise, remove it to fade it out
+
                 entry.target.classList.remove('visible');
             }
         });
     }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
+        threshold: 0.1
     });
 
     const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // --- INITIATE THE FETCH ---
+
     fetchLatestRelease();
 });
-// <-- end comment (.js file)(src/js/main.js)
