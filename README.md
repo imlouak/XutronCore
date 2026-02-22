@@ -4,7 +4,7 @@
 
 </div>
 
-<p align="center">
+<div align="center">
 
   <a href="https://imlouak.github.io/XutronCore/"><img src="https://img.shields.io/badge/Visit%20our%20Website-8A2BE2?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"></a>
   <br/>
@@ -18,7 +18,8 @@
 
   <a href="https://github.com/imlouak/xutroncore/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg?style=for-the-badge" alt="License: CC BY-NC-SA 4.0"></a>
   <a href="https://github.com/imlouak/xutroncore/releases"><img src="https://img.shields.io/github/v/tag/imlouak/XutronCore?style=for-the-badge&label=Release" alt="Latest Launcher Release"></a>
-</p>
+
+</div>
 
 > The central hub for the **XutronCore** application suite. This project provides the **XutronCore Launcher**, a unified tool for **Windows** designed to install, update, and manage all XutronCore applications seamlessly.
 
