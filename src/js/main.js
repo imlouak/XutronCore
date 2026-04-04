@@ -201,9 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             modalBody.innerHTML = `
                 <h1>${patch.title}</h1>
-                <div class="patch-card-date">${new Date(patch.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                <div class="patch-description-hero">${patch.summary}</div>
-                <hr style="margin: 2rem 0; border: none; border-bottom: 1px solid var(--border-color);">
+                <span class="patch-note-date">${new Date(patch.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                <p style="font-size: 1.1rem; color: var(--subtitle-color); line-height: 1.6; margin-bottom: 2rem;">${patch.summary}</p>
+                <hr>
                 ${cleanHtml}
             `;
         } catch (error) {
