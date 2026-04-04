@@ -151,5 +151,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    const fetchLatestPatches = async () => {
+        const patchesContainer = document.getElementById('patches-container');
+        try {
+            const response = await fetch('https://xutroncore-api.vercel.app/api/data-news');
+            if (!response.ok) throw new Error('API Error');
+            const data = await response.json();
+            const patches = data.news.slice(0, 2); // Get top 2
+
+            renderPatches(patches);
+        } catch (error) {
+            console.error('Failed to fetch patches:', error);
+            if (patchesContainer) {
+                patchesContainer.innerHTML = '<p class="status-message">Could not load latest updates.</p>';
+            }
+        }
+    };
+
+    const renderPatches = (patches) => {
+        const patchesContainer = document.getElementById('patches-container');
+        if (!patchesContainer) return;
+
+        patchesContainer.innerHTML = '';
+        patches.forEach(patch => {
+            const card = document.createElement('a');
+            card.className = 'patch-card';
+            card.href = '#'; // Could link to a full patch notes page if needed
+            card.innerHTML = `
+                <span class="patch-card-date">${new Date(patch.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                <h3 class="patch-card-title">${patch.title}</h3>
+                <p class="patch-card-summary">${patch.description || 'View full update details...'}</p>
+            `;
+            patchesContainer.appendChild(card);
+        });
+    };
+
     fetchLatestRelease();
+    fetchLatestPatches();
 });
