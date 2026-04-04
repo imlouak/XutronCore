@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.innerHTML = `
                 <span class="patch-card-date">${new Date(patch.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                 <h3 class="patch-card-title">${patch.title}</h3>
-                <p class="patch-card-summary">${patch.description || 'View full update details...'}</p>
+                <p class="patch-card-summary">${patch.summary || 'View full update details...'}</p>
             `;
             patchesContainer.appendChild(card);
         });
