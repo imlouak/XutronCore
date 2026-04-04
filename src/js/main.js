@@ -168,20 +168,74 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const openPatchModal = async (patch) => {
+        const modal = document.getElementById('patch-modal');
+        const modalBody = document.getElementById('modal-body');
+        
+        document.body.classList.add('modal-open');
+        modal.classList.remove('hidden');
+        modalBody.innerHTML = `
+            <div class="loading-patches">
+                <div class="spinner"></div>
+                <p>Fetching full documentation...</p>
+            </div>
+        `;
+
+        try {
+            const response = await fetch(`https://xutroncore-api.vercel.app/${encodeURI(patch.link)}`);
+            if (!response.ok) throw new Error('Failed to load content');
+            const rawMarkdown = await response.text();
+
+            // Extract Body (Remove YAML Frontmatter)
+            const metadataMatch = rawMarkdown.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+/);
+            let markdownBody = metadataMatch ? rawMarkdown.replace(metadataMatch[0], '') : rawMarkdown;
+
+            // Highlight Categories (Line-anchored Regex)
+            const processedMarkdown = markdownBody.replace(
+                /^ *(NEW FEATURES|BUGS FIX|REMOVED|GENERAL UPDATES|AGENT UPDATES|PERFORMANCE UPDATES|BUG FIXES|PC ONLY|ALL PLATFORMS|IN SHORT):? *$/gm, 
+                '<span class="patch-category">$1</span>'
+            );
+
+            const html = marked.parse(processedMarkdown);
+            const cleanHtml = DOMPurify.sanitize(html);
+
+            modalBody.innerHTML = `
+                <h1>${patch.title}</h1>
+                <div class="patch-card-date">${new Date(patch.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                <div class="patch-description-hero">${patch.summary}</div>
+                <hr style="margin: 2rem 0; border: none; border-bottom: 1px solid var(--border-color);">
+                ${cleanHtml}
+            `;
+        } catch (error) {
+            console.error('Modal Error:', error);
+            modalBody.innerHTML = '<p class="status-message">Could not load patch details. Please try again later.</p>';
+        }
+    };
+
+    const closePatchModal = () => {
+        document.getElementById('patch-modal').classList.add('hidden');
+        document.body.classList.remove('modal-open');
+    };
+
+    document.getElementById('close-modal').addEventListener('click', closePatchModal);
+    document.getElementById('patch-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'patch-modal') closePatchModal();
+    });
+
     const renderPatches = (patches) => {
         const patchesContainer = document.getElementById('patches-container');
         if (!patchesContainer) return;
 
         patchesContainer.innerHTML = '';
         patches.forEach(patch => {
-            const card = document.createElement('a');
+            const card = document.createElement('div');
             card.className = 'patch-card';
-            card.href = '#'; // Could link to a full patch notes page if needed
             card.innerHTML = `
                 <span class="patch-card-date">${new Date(patch.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                 <h3 class="patch-card-title">${patch.title}</h3>
                 <p class="patch-card-summary">${patch.summary || 'View full update details...'}</p>
             `;
+            card.addEventListener('click', () => openPatchModal(patch));
             patchesContainer.appendChild(card);
         });
     };
