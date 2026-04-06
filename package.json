@@ -16,8 +16,8 @@
   "main": "index.html",
   "scripts": {
     "github": "git add . && git commit -m \"Updated website.\"",
-    "version:patch": "npm version patch -m \"chore(release): version %s\" && git push",
-    "version:minor": "npm version minor -m \"chore(release): version %s\" && git push",
-    "version:major": "npm version major -m \"chore(release): version %s\" && git push"
+    "version:patch": "npm version patch -m \"chore(release): version %s\" && git push --follow-tags",
+    "version:minor": "npm version minor -m \"chore(release): version %s\" && git push --follow-tags",
+    "version:major": "npm version major -m \"chore(release): version %s\" && git push --follow-tags"
   }
 }
