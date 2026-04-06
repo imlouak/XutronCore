@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     let currentLang = localStorage.getItem('lang') || navigator.language.split('-')[0];
-    if (!['en', 'fr'].includes(currentLang)) currentLang = 'en';
+    const supportedLanguages = ['en'];
+    if (!supportedLanguages.includes(currentLang)) currentLang = 'en';
     let translations = {};
 
     let currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
@@ -96,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const loadTranslations = async (lang) => {
+        if (!supportedLanguages.includes(lang)) return loadTranslations('en');
         try {
             const resp = await fetch(`./src/languages/${lang}.json`);
             if (resp.ok) {
@@ -111,7 +113,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const updateVersion = async () => {
+        try {
+            const resp = await fetch('./package.json');
+            if (resp.ok) {
+                const pkg = await resp.json();
+                const versionEl = document.getElementById('settings-website-version');
+                if (versionEl) versionEl.textContent = `v${pkg.version}`;
+            }
+        } catch (e) {}
+    };
+
     loadTranslations(currentLang);
+    updateVersion();
 
     const triggerConfetti = () => {
         if (!confettiCanvas || typeof confetti !== 'function') return;
