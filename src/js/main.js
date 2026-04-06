@@ -3,6 +3,115 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressLabel = document.getElementById('progress-label');
     const progressBarFill = document.getElementById('progress-bar-fill');
     const confettiCanvas = document.getElementById('confetti-canvas');
+    const copyrightYear = document.getElementById('copyright-year');
+    const iconSun = document.getElementById('theme-icon-sun');
+    const iconMoon = document.getElementById('theme-icon-moon');
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+    const settingsBtn = document.getElementById('settings-btn');
+    const settingsModal = document.getElementById('settings-modal');
+    const closeSettingsBtn = document.getElementById('close-settings-modal');
+    
+    const btnLight = document.getElementById('theme-btn-light');
+    const btnDark = document.getElementById('theme-btn-dark');
+
+    if (settingsBtn && settingsModal && closeSettingsBtn) {
+        settingsBtn.addEventListener('click', () => {
+            settingsModal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        });
+        closeSettingsBtn.addEventListener('click', () => {
+            settingsModal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        });
+        settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            }
+        });
+    }
+    let currentLang = localStorage.getItem('lang') || navigator.language.split('-')[0];
+    if (!['en', 'fr'].includes(currentLang)) currentLang = 'en';
+    let translations = {};
+
+    let currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    if(copyrightYear) {
+        copyrightYear.textContent = new Date().getFullYear();
+    }
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'light') {
+            if(btnLight) btnLight.classList.add('active');
+            if(btnDark) btnDark.classList.remove('active');
+        } else {
+            if(btnDark) btnDark.classList.add('active');
+            if(btnLight) btnLight.classList.remove('active');
+        }
+    };
+    
+    applyTheme(currentTheme);
+    
+    if (btnLight) {
+        btnLight.addEventListener('click', () => {
+            currentTheme = 'light';
+            applyTheme(currentTheme);
+        });
+    }
+    
+    if (btnDark) {
+        btnDark.addEventListener('click', () => {
+            currentTheme = 'dark';
+            applyTheme(currentTheme);
+        });
+    }
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            scrollToTopBtn.classList.remove('hidden');
+        } else {
+            scrollToTopBtn.classList.add('hidden');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const applyTranslations = () => {
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const keys = el.getAttribute('data-i18n').split('.');
+            let value = translations;
+            for (const key of keys) {
+                value = value ? value[key] : null;
+            }
+            if (typeof value === 'string') {
+                if (keys[0] === 'footer' && keys[1] === 'copyright') {
+                    el.innerHTML = value.replace('{year}', `<span id="copyright-year">${new Date().getFullYear()}</span>`);
+                } else {
+                    el.innerHTML = value;
+                }
+            }
+        });
+    };
+
+    const loadTranslations = async (lang) => {
+        try {
+            const resp = await fetch(`./src/languages/${lang}.json`);
+            if (resp.ok) {
+                translations = await resp.json();
+                applyTranslations();
+                localStorage.setItem('lang', lang);
+                currentLang = lang;
+            } else if (lang !== 'en') {
+                loadTranslations('en');
+            }
+        } catch (error) {
+            console.error('Translation load failed: ', error);
+        }
+    };
+
+    loadTranslations(currentLang);
 
     const triggerConfetti = () => {
         if (!confettiCanvas || typeof confetti !== 'function') return;
@@ -26,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressContainer.classList.remove('hidden');
         progressBarFill.style.width = '0%';
         progressBarFill.classList.remove('complete');
-        progressLabel.textContent = 'Preparing download...';
+        progressLabel.textContent = translations['progress.preparing'] || 'Preparing download...';
 
         const interval = setInterval(() => {
             progress += Math.random() * 10;
@@ -34,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 progress = 100;
                 clearInterval(interval);
 
-                progressLabel.textContent = 'Download Complete!';
+                progressLabel.textContent = translations['progress.complete'] || 'Download Complete!';
                 progressBarFill.classList.add('complete');
 
                 triggerConfetti();
@@ -48,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 2500);
             }
             progressBarFill.style.width = progress + '%';
-            progressLabel.textContent = `Downloading... ${Math.floor(progress)}%`;
+
+            let downloadText = translations['progress.downloading'] || 'Downloading... {progress}%';
+            progressLabel.textContent = downloadText.replace('{progress}', Math.floor(progress));
         }, 200);
 
         if (window.trackEvent) {
@@ -80,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             if (statusMessage) {
-                statusMessage.textContent = 'Could not load download links. Please visit the GitHub releases page directly.';
+                statusMessage.textContent = translations['download.status_error'] || 'Could not load download links. Please visit the GitHub releases page directly.';
                 statusMessage.style.color = '#ef4444';
             }
             if (downloadGrid) {
@@ -159,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const openPatchModal = async (patch) => {
         const modal = document.getElementById('patch-modal');
         const modalBody = document.getElementById('modal-body');
-        
+
         document.body.classList.add('modal-open');
         modal.classList.remove('hidden');
         modalBody.innerHTML = `

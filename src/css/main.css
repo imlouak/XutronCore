@@ -21,6 +21,14 @@
     --color-linux: #de9b1a;
 }
 
+html[data-theme='light'] {
+    --bg-color: #f9fafb;
+    --text-color: #111827;
+    --card-bg-color: #ffffff;
+    --border-color: #e5e7eb;
+    --subtitle-color: #4b5563;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
 
 
 
@@ -59,7 +67,7 @@ body {
 }
 
 
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -211,7 +219,7 @@ main>section {
     border-bottom-color: var(--color-windows);
 }
 
-/* Latest Updates Section */
+
 .patches-grid {
     display: flex;
     justify-content: center;
@@ -285,7 +293,7 @@ main>section {
 }
 
 
-/* Patch Note Modal */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -339,7 +347,7 @@ main>section {
     color: var(--text-color);
 }
 
-/* Markdown Styling in Modal */
+
 .markdown-body {
     color: var(--text-color);
 }
@@ -592,6 +600,176 @@ footer p {
 .fade-in-section.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+.settings-section {
+    margin-bottom: 2.5rem;
+}
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+}
+.settings-item:hover {
+    border-color: var(--accent-color);
+}
+.settings-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.settings-item-label {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.settings-item-description {
+    font-size: 0.9rem;
+    color: var(--subtitle-color);
+}
+.settings-section-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--subtitle-color);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: left;
+}
+.theme-toggles {
+    display: flex;
+    gap: 10px;
+}
+.settings-action-block {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.settings-action-block:hover {
+    border-color: var(--accent-color);
+}
+.settings-action-block.active {
+    border-color: var(--accent-color);
+    background-color: rgba(79, 70, 229, 0.1);
+}
+.settings-action-block.disabled {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: var(--subtitle-color);
+    cursor: not-allowed;
+    border-color: var(--border-color);
+    opacity: 0.8;
+}
+.custom-select-dropdown {
+    appearance: none;
+    outline: none;
+    padding-right: 2.5rem;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="%239ca3af" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.2rem;
+}
+.settings-about {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+.about-logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+}
+.about-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.25rem;
+    text-align: left;
+}
+.about-info p {
+    margin: 0 0 10px 0;
+    color: var(--subtitle-color);
+    text-align: left;
+}
+#settings-website-version {
+    font-family: monospace;
+    background-color: var(--border-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.site-controls {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.control-btn {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
+    color: var(--accent-color);
+}
+
+.lang-dropdown {
+    padding: 10px 15px;
+    appearance: none;
+    outline: none;
+}
+
+.icon-btn {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+}
+
+.control-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(30px) scale(0.9);
 }
 
 

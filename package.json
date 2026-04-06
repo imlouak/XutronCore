@@ -1,0 +1,23 @@
+{
+  "name": "xutroncore-website",
+  "version": "1.1.9",
+  "description": "<div align=\"center\">",
+  "homepage": "https://github.com/iamplayerexe/XutronCore#readme",
+  "bugs": {
+    "url": "https://github.com/iamplayerexe/XutronCore/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamplayerexe/XutronCore.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "github": "git add . && git commit -m \"Updated website.\"",
+    "version:patch": "npm version patch -m \"chore(release): version %s\" && git push",
+    "version:minor": "npm version minor -m \"chore(release): version %s\" && git push",
+    "version:major": "npm version major -m \"chore(release): version %s\" && git push"
+  }
+}
