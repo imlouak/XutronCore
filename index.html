@@ -4,8 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XutronCore</title>
+    <title>XutronCore — Unified App Launcher & Manager</title>
 
+    <meta name="description" content="XutronCore is the central hub for all your applications. Seamlessly manage, update, and launch your software suite from one powerful, unified interface.">
+    <meta name="author" content="Xutron">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="XutronCore — Unified App Launcher">
+    <meta property="og:description" content="Seamlessly manage, update, and launch your software suite from one powerful, unified interface.">
+    <meta property="og:url" content="https://xutroncore.com">
+    <meta property="og:image" content="https://xutroncore.com/src/assets/xutroncore-icon.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XutronCore — Unified App Launcher">
+    <meta name="twitter:description" content="Seamlessly manage, update, and launch your software suite from one powerful, unified interface.">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://xutroncore-api.vercel.app https://api.github.com;">
 
     <link rel="icon" type="image/x-icon" href="src/assets/xutroncore-icon.ico">
     <link rel="icon" type="image/png" href="src/assets/xutroncore-icon.png">
@@ -13,10 +28,11 @@
 
     <link rel="stylesheet" href="styles.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" integrity="sha384-0esPaJH+F9evp2lsJYN36SW7XkRbaYviuyF+PpnbjDXBC9i1CWGiJyGrXCyiyGqZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@17.0.6/marked.min.js" integrity="sha384-tkjnnf9Tzhv5ZFrDroGvUExw9C3EVFo0RFRkzKR8ZX4b5Psoec4yb1PlD8Jh4j4H" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.3/dist/purify.min.js" integrity="sha384-pcBjnGbkyKeOXaoFkmJiuR9E08/6gkmus6/Strimnxtl3uk0Hx23v345pWyC/MMr" crossorigin="anonymous"></script>
 </head>
+
 
 <body>
 
@@ -39,7 +55,7 @@
                 <p id="download-status">Fetching latest release...</p>
                 <div id="download-grid" class="download-grid hidden">
                     <a href="#" id="win-link" class="download-card windows">
-                        <img class="logo" src="./src/assets/windows-icon.svg" alt="Windows OS">
+                        <img class="logo" src="./src/assets/windows-icon.svg" alt="Windows OS" loading="lazy">
                         <span>Install for Windows</span>
                     </a>
                 </div>
@@ -152,18 +168,19 @@
         </div>
     </div>
 
-    <!-- Patch Modal -->
+
     <div id="patch-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <button id="close-modal" class="close-btn">&times;</button>
             <div id="modal-body" class="markdown-body">
-                <!-- Content will be injected here -->
+
             </div>
         </div>
     </div>
 
     <canvas id="confetti-canvas"></canvas>
 
+    <script src="./src/js/tracker.js"></script>
     <script src="./src/js/main.js"></script>
 </body>
 

@@ -1,14 +1,8 @@
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-
-
     const progressContainer = document.getElementById('progress-container');
     const progressLabel = document.getElementById('progress-label');
     const progressBarFill = document.getElementById('progress-bar-fill');
     const confettiCanvas = document.getElementById('confetti-canvas');
-
 
     const triggerConfetti = () => {
         if (!confettiCanvas || typeof confetti !== 'function') return;
@@ -22,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
             origin: { y: 0.6 }
         });
     };
-
 
     const simulateDownload = (event) => {
         event.preventDefault();
@@ -57,8 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
             progressBarFill.style.width = progress + '%';
             progressLabel.textContent = `Downloading... ${Math.floor(progress)}%`;
         }, 200);
-    };
 
+        if (window.trackEvent) {
+            window.trackEvent('Website', 'download_launcher', { url: downloadUrl });
+        }
+    };
 
     const fetchLatestRelease = async () => {
         const owner = 'iamplayerexe';
@@ -83,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDownloadLinks(latestVersion, downloadUrls);
 
         } catch (error) {
-            console.error('Failed to fetch latest release:', error);
             if (statusMessage) {
                 statusMessage.textContent = 'Could not load download links. Please visit the GitHub releases page directly.';
                 statusMessage.style.color = '#ef4444';
@@ -93,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-
 
     const updateDownloadLinks = (version, urls) => {
         const latestVersionEl = document.getElementById('latest-version');
@@ -124,20 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
     const yearSpan = document.getElementById('copyright-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             } else {
-
                 entry.target.classList.remove('visible');
             }
         });
@@ -150,18 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-
     const fetchLatestPatches = async () => {
         const patchesContainer = document.getElementById('patches-container');
         try {
             const response = await fetch('https://xutroncore-api.vercel.app/api/data-news');
             if (!response.ok) throw new Error('API Error');
             const data = await response.json();
-            const patches = data.news.slice(0, 2); // Get top 2
+            const patches = data.news.slice(0, 2);
 
             renderPatches(patches);
         } catch (error) {
-            console.error('Failed to fetch patches:', error);
             if (patchesContainer) {
                 patchesContainer.innerHTML = '<p class="status-message">Could not load latest updates.</p>';
             }
@@ -181,16 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
+        if (window.trackEvent) {
+            window.trackEvent('Website', 'view_patch_note', { title: patch.title });
+        }
+
         try {
             const response = await fetch(`https://xutroncore-api.vercel.app/${encodeURI(patch.link)}`);
             if (!response.ok) throw new Error('Failed to load content');
             const rawMarkdown = await response.text();
 
-            // Extract Body (Remove YAML Frontmatter)
             const metadataMatch = rawMarkdown.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+/);
             let markdownBody = metadataMatch ? rawMarkdown.replace(metadataMatch[0], '') : rawMarkdown;
 
-            // Highlight Categories (Line-anchored Regex)
             const processedMarkdown = markdownBody.replace(
                 /^ *(NEW FEATURES|BUGS FIX|REMOVED|GENERAL UPDATES|AGENT UPDATES|PERFORMANCE UPDATES|BUG FIXES|PC ONLY|ALL PLATFORMS|IN SHORT):? *$/gm, 
                 '<span class="patch-category">$1</span>'
@@ -207,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${cleanHtml}
             `;
         } catch (error) {
-            console.error('Modal Error:', error);
             modalBody.innerHTML = '<p class="status-message">Could not load patch details. Please try again later.</p>';
         }
     };
