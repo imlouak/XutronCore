@@ -51,99 +51,192 @@ document.addEventListener('DOMContentLoaded', () => {
             if(btnLight) btnLight.classList.remove('active');
         }
     };
+    
     applyTheme(currentTheme);
-
-    if (btnLight) btnLight.addEventListener('click', () => applyTheme('light'));
-    if (btnDark) btnDark.addEventListener('click', () => applyTheme('dark'));
-
-    if (scrollToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    if (btnLight) {
+        btnLight.addEventListener('click', () => {
+            currentTheme = 'light';
+            applyTheme(currentTheme);
         });
     }
+    
+    if (btnDark) {
+        btnDark.addEventListener('click', () => {
+            currentTheme = 'dark';
+            applyTheme(currentTheme);
+        });
+    }
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            scrollToTopBtn.classList.remove('hidden');
+        } else {
+            scrollToTopBtn.classList.add('hidden');
+        }
+    });
 
-    const fetchLatestRelease = async () => {
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const applyTranslations = () => {
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const keys = el.getAttribute('data-i18n').split('.');
+            let value = translations;
+            for (const key of keys) {
+                value = value ? value[key] : null;
+            }
+            if (typeof value === 'string') {
+                if (keys[0] === 'footer' && keys[1] === 'copyright') {
+                    el.innerHTML = value.replace('{year}', `<span id="copyright-year">${new Date().getFullYear()}</span>`);
+                } else {
+                    el.innerHTML = value;
+                }
+            }
+        });
+    };
+
+    const loadTranslations = async (lang) => {
+        if (!supportedLanguages.includes(lang)) return loadTranslations('en');
         try {
-            const response = await fetch('https://api.github.com/repos/imlouak/XutronCore/releases/latest');
-            if (!response.ok) return;
-            const data = await response.json();
-            if (!data || !data.tag_name) return;
-            const version = data.tag_name;
-            const setupAsset = data.assets ? data.assets.find(a => a.name.toLowerCase().includes('setup.exe')) : null;
-            const downloadUrl = setupAsset ? setupAsset.browser_download_url : (data.assets && data.assets[0] ? data.assets[0].browser_download_url : '');
-
-            const versionLabel = document.getElementById('latest-version');
-            const downloadBtn = document.getElementById('download-btn');
-
-            if (versionLabel) versionLabel.textContent = `Latest: ${version}`;
-            if (downloadBtn && downloadUrl) {
-                downloadBtn.href = downloadUrl;
-                downloadBtn.onclick = (e) => {
-                    e.preventDefault();
-                    startDownload(downloadUrl, version);
-                };
+            const resp = await fetch(`./src/languages/${lang}.json`);
+            if (resp.ok) {
+                translations = await resp.json();
+                applyTranslations();
+                localStorage.setItem('lang', lang);
+                currentLang = lang;
+            } else if (lang !== 'en') {
+                loadTranslations('en');
             }
         } catch (error) {
-            console.error('Failed to fetch latest release:', error);
+            console.error('Translation load failed: ', error);
         }
     };
 
-    const startDownload = (url, version) => {
-        const downloadSection = document.getElementById('download');
-        const downloadGrid = document.querySelector('.download-grid');
-        
-        if (progressContainer) {
-            progressContainer.classList.remove('hidden');
-        }
-        if (downloadGrid) {
-            downloadGrid.classList.add('hidden');
-        }
+    const updateVersion = async () => {
+        try {
+            const resp = await fetch('./package.json');
+            if (resp.ok) {
+                const pkg = await resp.json();
+                const versionEl = document.getElementById('settings-website-version');
+                if (versionEl) versionEl.textContent = `v${pkg.version}`;
+            }
+        } catch (e) {}
+    };
 
+    loadTranslations(currentLang);
+    updateVersion();
+
+    const triggerConfetti = () => {
+        if (!confettiCanvas || typeof confetti !== 'function') return;
+        const myConfetti = confetti.create(confettiCanvas, {
+            resize: true,
+            useWorker: true
+        });
+        myConfetti({
+            particleCount: 150,
+            spread: 90,
+            origin: { y: 0.6 }
+        });
+    };
+
+    const simulateDownload = (event) => {
+        event.preventDefault();
+        const downloadUrl = event.currentTarget.href;
+        if (!downloadUrl || downloadUrl === '#') return;
         let progress = 0;
+
+        progressContainer.classList.remove('hidden');
+        progressBarFill.style.width = '0%';
+        progressBarFill.classList.remove('complete');
+        progressLabel.textContent = translations['progress.preparing'] || 'Preparing download...';
+
         const interval = setInterval(() => {
-            progress += Math.random() * 15;
+            progress += Math.random() * 10;
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(interval);
-                finishDownload();
+
+                progressLabel.textContent = translations['progress.complete'] || 'Download Complete!';
+                progressBarFill.classList.add('complete');
+
+                triggerConfetti();
+
+                setTimeout(() => {
+                    window.location.href = downloadUrl;
+                }, 500);
+
+                setTimeout(() => {
+                    progressContainer.classList.add('hidden');
+                }, 2500);
             }
-            if (progressBarFill) progressBarFill.style.width = `${progress}%`;
-            if (progressLabel) progressLabel.textContent = `Downloading XutronCore ${version}... ${Math.round(progress)}%`;
+            progressBarFill.style.width = progress + '%';
+
+            let downloadText = translations['progress.downloading'] || 'Downloading... {progress}%';
+            progressLabel.textContent = downloadText.replace('{progress}', Math.floor(progress));
         }, 200);
 
-        window.location.href = url;
+        if (window.trackEvent) {
+            window.trackEvent('Website', 'download_launcher', { url: downloadUrl });
+        }
     };
 
-    const finishDownload = () => {
-        const downloadGrid = document.querySelector('.download-grid');
-        if (progressLabel) progressLabel.textContent = 'Download Started! Check your browser downloads.';
-        
-        if (window.trackEvent) {
-            window.trackEvent('Website', 'download_started');
+    const fetchLatestRelease = async () => {
+        const owner = 'iamplayerexe';
+        const repo = 'xutroncore';
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
+        const downloadGrid = document.getElementById('download-grid');
+        const statusMessage = document.getElementById('download-status');
+
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`GitHub API responded with status: ${response.status}`);
+            }
+            const release = await response.json();
+            const latestVersion = release.tag_name.replace('v', '');
+
+            const assets = release.assets;
+            const downloadUrls = {
+                windows: assets.find(asset => asset.name.endsWith('.exe'))?.browser_download_url
+            };
+
+            updateDownloadLinks(latestVersion, downloadUrls);
+
+        } catch (error) {
+            if (statusMessage) {
+                statusMessage.textContent = translations['download.status_error'] || 'Could not load download links. Please visit the GitHub releases page directly.';
+                statusMessage.style.color = '#ef4444';
+            }
+            if (downloadGrid) {
+                downloadGrid.classList.add('hidden');
+            }
+        }
+    };
+
+    const updateDownloadLinks = (version, urls) => {
+        const latestVersionEl = document.getElementById('latest-version');
+        const winLinkEl = document.getElementById('win-link');
+        const downloadGrid = document.getElementById('download-grid');
+        const statusMessage = document.getElementById('download-status');
+
+        if (latestVersionEl) {
+            latestVersionEl.innerText = version;
         }
 
-        if (confettiCanvas) {
-            const myConfetti = confetti.create(confettiCanvas, { resize: true });
-            myConfetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#007aff', '#5856d6', '#ff2d55']
-            });
-        }
+        const setupButton = (element, url) => {
+            if (element && url) {
+                element.href = url;
+                element.addEventListener('click', simulateDownload);
+            } else if (element) {
+                element.classList.add('hidden');
+            }
+        };
 
-        if (progressContainer) {
-            setTimeout(() => {
-                progressContainer.classList.add('hidden');
-            }, 5000);
+        setupButton(winLinkEl, urls.windows);
+
+        if (statusMessage) {
+            statusMessage.classList.add('hidden');
         }
         if (downloadGrid) {
             downloadGrid.classList.remove('hidden');
@@ -172,14 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    const API_PUBLIC_KEY = 'bb7cc56a-723a-4933-8557-4b77f9888921';
-
     const fetchLatestPatches = async () => {
         const patchesContainer = document.getElementById('patches-container');
         try {
-            const response = await fetch('https://xutroncore-api.vercel.app/api/data-news', {
-                headers: { 'x-api-key': API_PUBLIC_KEY }
-            });
+            const response = await fetch('https://xutroncore-api.vercel.app/api/data-news');
             if (!response.ok) throw new Error('API Error');
             const data = await response.json();
             const patches = data.news.slice(0, 2);
@@ -210,9 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`https://xutroncore-api.vercel.app/api/data-news/raw?path=${encodeURIComponent(patch.link)}`, {
-                headers: { 'x-api-key': API_PUBLIC_KEY }
-            });
+            const response = await fetch(`https://xutroncore-api.vercel.app/${encodeURI(patch.link)}`);
             if (!response.ok) throw new Error('Failed to load content');
             const rawMarkdown = await response.text();
 
