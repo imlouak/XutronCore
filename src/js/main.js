@@ -182,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fetchLatestRelease = async () => {
-        const owner = 'iamplayerexe';
-        const repo = 'xutroncore';
+        const owner = 'imlouak';
+        const repo = 'XutronCore';
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
         const downloadGrid = document.getElementById('download-grid');
         const statusMessage = document.getElementById('download-status');
@@ -265,10 +265,14 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
+    const API_PUBLIC_KEY = 'bb7cc56a-723a-4933-8557-4b77f9888921';
+
     const fetchLatestPatches = async () => {
         const patchesContainer = document.getElementById('patches-container');
         try {
-            const response = await fetch('https://xutroncore-api.vercel.app/api/data-news');
+            const response = await fetch('https://xutroncore-api.vercel.app/api/data-news', {
+                headers: { 'x-api-key': API_PUBLIC_KEY }
+            });
             if (!response.ok) throw new Error('API Error');
             const data = await response.json();
             const patches = data.news.slice(0, 2);
@@ -299,7 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`https://xutroncore-api.vercel.app/${encodeURI(patch.link)}`);
+            const response = await fetch(`https://xutroncore-api.vercel.app/api/data-news/raw?path=${encodeURIComponent(patch.link)}`, {
+                headers: { 'x-api-key': 'bb7cc56a-723a-4933-8557-4b77f9888921' }
+            });
             if (!response.ok) throw new Error('Failed to load content');
             const rawMarkdown = await response.text();
 
