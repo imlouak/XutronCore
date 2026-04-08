@@ -73,7 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchLatestRelease = async () => {
         try {
             const response = await fetch('https://api.github.com/repos/imlouak/XutronCore/releases/latest');
+            if (!response.ok) return;
             const data = await response.json();
+            if (!data || !data.tag_name) return;
             const version = data.tag_name;
             
             let downloadUrl = '';
@@ -86,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const downloadBtn = document.getElementById('download-btn');
 
             if (versionLabel) versionLabel.textContent = `Latest: ${version}`;
-            if (downloadBtn) {
+            if (downloadBtn && downloadUrl) {
                 downloadBtn.href = downloadUrl;
                 downloadBtn.onclick = (e) => {
                     e.preventDefault();
