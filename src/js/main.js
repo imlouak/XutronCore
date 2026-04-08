@@ -77,12 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (!data || !data.tag_name) return;
             const version = data.tag_name;
-            
-            let downloadUrl = '';
-            if (data.assets && data.assets.length > 0) {
-                const setupAsset = data.assets.find(asset => asset.name.toLowerCase().includes('setup.exe'));
-                downloadUrl = setupAsset ? setupAsset.browser_download_url : data.assets[0].browser_download_url;
-            }
+            const setupAsset = data.assets ? data.assets.find(a => a.name.toLowerCase().includes('setup.exe')) : null;
+            const downloadUrl = setupAsset ? setupAsset.browser_download_url : (data.assets && data.assets[0] ? data.assets[0].browser_download_url : '');
 
             const versionLabel = document.getElementById('latest-version');
             const downloadBtn = document.getElementById('download-btn');
