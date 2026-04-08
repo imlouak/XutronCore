@@ -72,10 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchLatestRelease = async () => {
         try {
-            const response = await fetch('https://api.github.com/repos/iamplayerexe/password_generator_app/releases/latest');
+            const response = await fetch('https://api.github.com/repos/imlouak/XutronCore/releases/latest');
             const data = await response.json();
             const version = data.tag_name;
-            const downloadUrl = data.assets[0].browser_download_url;
+            
+            let downloadUrl = '';
+            if (data.assets && data.assets.length > 0) {
+                const setupAsset = data.assets.find(asset => asset.name.toLowerCase().includes('setup.exe'));
+                downloadUrl = setupAsset ? setupAsset.browser_download_url : data.assets[0].browser_download_url;
+            }
 
             const versionLabel = document.getElementById('latest-version');
             const downloadBtn = document.getElementById('download-btn');
