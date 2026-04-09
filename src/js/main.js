@@ -175,10 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let downloadText = translations['progress.downloading'] || 'Downloading... {progress}%';
             progressLabel.textContent = downloadText.replace('{progress}', Math.floor(progress));
         }, 200);
-
-        if (window.trackEvent) {
-            window.trackEvent('Website', 'download_launcher', { url: downloadUrl });
-        }
     };
 
     const fetchLatestRelease = async () => {
@@ -297,10 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Fetching full documentation...</p>
             </div>
         `;
-
-        if (window.trackEvent) {
-            window.trackEvent('Website', 'view_patch_note', { title: patch.title });
-        }
 
         try {
             const response = await fetch(`https://xutroncore-api.vercel.app/api/data-news/raw?path=${encodeURIComponent(patch.link)}`, {
