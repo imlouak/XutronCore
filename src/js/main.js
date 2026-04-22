@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let markdownBody = metadataMatch ? rawMarkdown.replace(metadataMatch[0], '') : rawMarkdown;
 
             const processedMarkdown = markdownBody.replace(
-                /^ *(NEW FEATURES|BUGS FIX|REMOVED|GENERAL UPDATES|AGENT UPDATES|PERFORMANCE UPDATES|BUG FIXES|PC ONLY|ALL PLATFORMS|IN SHORT):? *$/gm, 
+                /^ *#{0,3} *(NEW FEATURES|BUGS FIX|REMOVED|GENERAL UPDATES|AGENT UPDATES|PERFORMANCE UPDATES|BUG FIXES|PC ONLY|ALL PLATFORMS|IN SHORT):? *$/gim, 
                 '<span class="patch-category">$1</span>'
             );
 
